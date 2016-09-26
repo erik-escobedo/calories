@@ -1,0 +1,39 @@
+.btn {
+  background-color: $bg-alt-color;
+  color: $white;
+  font-size: 16px;
+  border-radius: 20px;
+  padding: 8px 25px;
+  box-shadow: 0px 3px 2px -1px darken($bg-color, 60%);
+
+  &:hover, &:focus, &:active, &:visited, &:active:focus {
+    outline: none;
+    color: $white;
+  }
+
+  &:active:focus {
+    color: lighten($bg-color, 5%);
+  }
+}
+
+a:focus {
+  outline-color: $bg-color;
+}
+
+ul.buttons {
+  position: absolute;
+  bottom: 5px;
+  right: 30px;
+  visibility: hidden;
+
+  li {
+    display: inline-block;
+
+    .btn {
+      padding: 0;
+      width: 30px;
+      height: 30px;
+      line-height: 30px;
+    }
+  }
+}

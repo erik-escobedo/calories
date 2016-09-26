@@ -1,0 +1,36 @@
+<header class="row">
+  <h2 class="col-xs-6">My Meals</h2>
+
+  <div class="col-xs-6 text-right">
+    <a class="btn" ng-click="openForm()">Add New</a>
+  </div>
+</header>
+
+<div class="row meals">
+  <div class="col-md-4 col-sm-6" ng-repeat="meal in meals">
+    <section class="meal" ng-click="select(meal)" ng-mouseout="meal.selected=false"
+      ng-class="{ 'selected': meal.selected }">
+
+      <div class="data">
+        <div class="date" ng-bind="meal.taken_at | date"></div>
+        <div>
+          <i class="fa fa-clock-o"></i>
+          <span ng-bind="meal.taken_at | date:'shortTime'"></span>
+        </div>
+        <div class="description" ng-bind="meal.description | characters:48"></div>
+      </div>
+
+      <div class="calories" ng-bind="meal.calories | number"></div>
+
+      <ul class="buttons">
+        <li>
+          <a class="btn" ng-click="openForm(meal)"><i class="fa fa-pencil"></i></a>
+        </li>
+
+        <li>
+          <a class="btn" ng-click="delete(meal)"><i class="fa fa-trash"></i></a>
+        </li>
+      </ul>
+    </section>
+  </div>
+</fieldset>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html ng-app="toptal">
+<head>
+  <title>Project Erik Escobedo</title>
+  <%= stylesheet_link_tag    'application', media: 'all' %>
+  <%= javascript_include_tag 'application' %>
+  <%= csrf_meta_tags %>
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  <link href='https://fonts.googleapis.com/css?family=Raleway:400,300,700' rel='stylesheet' type='text/css'>
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+<body ng-cloak>
+  <navbar class="navbar navbar-default" ng-cloak></navbar>
+
+  <div class="container" ng-view>
+  </div>
+</body>
+</html>

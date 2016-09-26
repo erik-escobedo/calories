@@ -1,0 +1,21 @@
+<nav ng-show="user">
+  <div class="container">
+    <ul class="nav row">
+      <li class="col-xs-6"
+        ng-bind="user.uid"
+        ng-hide="user.account_manager">
+      </li>
+
+      <li class="col-xs-6" ng-show="user.account_manager">
+        <a href="#/account">
+          <i class="fa fa-cog"></i>
+          {{user.uid}}
+        </a>
+      </li>
+
+      <li class="col-xs-6 text-right">
+        <a class="btn" ng-click="logout()">Logout</a>
+      </li>
+    </ul>
+  </div>
+</nav>

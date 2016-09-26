@@ -1,0 +1,134 @@
+<header class="row">
+  <h2 class="col-xs-6">My Meals</h2>
+
+  <div class="col-xs-6 text-right">
+    <a class="btn" ng-click="openForm()">Add New</a>
+  </div>
+</header>
+
+<form class="row filter">
+  <fieldset class="col-xs-6">
+    <label>From:</label>
+
+    <div class="input-group datepicker">
+      <input type="text" class="form-control text-center"
+        uib-datepicker-popup="MM/dd/yy" datepicker-options="{ showWeeks: false}"
+        ng-model="filter.date_from"
+        ng-change="getMeals()"
+        is-open="filterFromOpen">
+
+      <span class="input-group-btn">
+        <button type="button" class="btn" ng-click="filterFromOpen=!filterFromOpen">
+          <i class="fa fa-calendar"></i>
+        </button>
+      </span>
+    </div>
+  </fieldset>
+
+  <fieldset class="col-xs-6">
+    <label>To:</label>
+
+    <div class="input-group datepicker">
+      <input type="text" class="form-control text-center"
+        uib-datepicker-popup="MM/dd/yy" datepicker-options="{ showWeeks: false}"
+        ng-model="filter.date_to"
+        ng-change="getMeals()"
+        is-open="filterToOpen">
+
+      <span class="input-group-btn">
+        <button type="button" class="btn" ng-click="filterToOpen=!filterToOpen">
+          <i class="fa fa-calendar"></i>
+        </button>
+      </span>
+    </div>
+  </fieldset>
+
+  <fieldset class="col-xs-6" ng-show="!groupByDate">
+    <label>From:</label>
+
+    <div class="input-group">
+      <input type="text" class="form-control text-center"
+        ng-model="filter.time_from"
+        ng-blur="getMeals()">
+
+      <span class="input-group-btn btn">
+        <i class="fa fa-clock-o"></i>
+      </span>
+    </div>
+  </fieldset>
+
+  <fieldset class="col-xs-6" ng-show="!groupByDate">
+    <label>To:</label>
+
+    <div class="input-group">
+      <input type="text" class="form-control text-center"
+        ng-model="filter.time_to"
+        ng-blur="getMeals()">
+
+      <span class="input-group-btn btn">
+        <i class="fa fa-clock-o"></i>
+      </span>
+    </div>
+  </fieldset>
+
+  <fieldset class="col-xs-6" ng-show="groupByDate">
+    <label>Expected calories per day:</label>
+
+    <div class="input-group datepicker">
+      <input type="text" class="form-control text-center" ng-model="dailyCalories">
+
+      <span class="input-group-btn">
+        <button type="button" class="btn" ng-click="saveSettings()">
+          <i ng-attr-class="fa fa-{{savingSettings ? 'spinner' : 'cloud'}}"></i>
+        </button>
+      </span>
+    </div>
+  </fieldset>
+
+  <fieldset class="col-xs-6">
+    <label>
+      <input type="checkbox" ng-model="groupByDate">
+      Group by date
+    </label>
+  </fieldset>
+</form>
+
+<div class="row meals">
+  <div class="col-md-4 col-sm-6" ng-repeat="(date, meals) in meals | groupBy: 'date'" ng-if="groupByDate">
+    <section class="meal grouped" ng-click="select(meal)" ng-mouseout="meal.selected=false"
+      ng-class="{ 'selected': meal.selected }">
+
+      <div class="date" ng-bind="parseDate(date)"></div>
+      <div class="calories" ng-bind="meals | map: 'calories' | sum"
+        ng-class="{'exceeded': (meals | map: 'calories' | sum) > dailyCalories}">
+      </div>
+    </section>
+  </div>
+
+  <div class="col-md-4 col-sm-6" ng-repeat="meal in meals" ng-if="!groupByDate">
+    <section class="meal" ng-click="select(meal)" ng-mouseout="meal.selected=false"
+      ng-class="{ 'selected': meal.selected }">
+
+      <div class="data">
+        <div class="date" ng-bind="meal.taken_at | date"></div>
+        <div>
+          <i class="fa fa-clock-o"></i>
+          <span ng-bind="meal.taken_at | date:'shortTime'"></span>
+        </div>
+        <div class="description" ng-bind="meal.description | characters:48"></div>
+      </div>
+
+      <div class="calories" ng-bind="meal.calories | number"></div>
+
+      <ul class="buttons">
+        <li>
+          <a class="btn" ng-click="openForm(meal)"><i class="fa fa-pencil"></i></a>
+        </li>
+
+        <li>
+          <a class="btn" ng-click="delete(meal)"><i class="fa fa-trash"></i></a>
+        </li>
+      </ul>
+    </section>
+  </div>
+</fieldset>

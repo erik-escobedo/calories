@@ -1,0 +1,27 @@
+<header class="row">
+  <h2 class="col-xs-6">My account's Users</h2>
+
+  <div class="col-xs-6 text-right">
+    <a class="btn" ng-click="openForm()">Add New</a>
+  </div>
+</header>
+
+<div class="row users">
+  <div class="col-md-4 col-sm-6" ng-repeat="user in users">
+    <section class="user" ng-click="select(user)" ng-mouseout="user.selected=false"
+      ng-class="{ 'selected': user.selected }">
+
+      <div class="email" ng-bind="user.email"></div>
+
+      <ul class="buttons">
+        <li>
+          <a class="btn" ng-click="openForm(user)"><i class="fa fa-pencil"></i></a>
+        </li>
+
+        <li>
+          <a class="btn" ng-click="delete(user)"><i class="fa fa-trash"></i></a>
+        </li>
+      </ul>
+    </section>
+  </div>
+</fieldset>

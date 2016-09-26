@@ -1,0 +1,43 @@
+<div class="container-fluid">
+  <h3 class="col-md">New Meal</h3>
+
+  <form class="meals row">
+    <fieldset class="col-xs-6">
+      <label>Date</label>
+
+      <div class="input-group datepicker">
+        <input type="text" class="form-control text-center"
+          uib-datepicker-popup="MM/dd/yy" datepicker-options="{ showWeeks: false}"
+          ng-model="meal.date" is-open="dateOpen">
+
+        <span class="input-group-btn">
+          <button type="button" class="btn" ng-click="dateOpen=!dateOpen">
+            <i class="fa fa-calendar"></i>
+          </button>
+        </span>
+      </div>
+    </fieldset>
+
+    <fieldset class="col-xs-6">
+      <label>Time</label>
+      <input type="text" class="form-control text-center"
+        ng-model="meal.time"
+        ng-blur="parseTime()">
+    </fieldset>
+
+    <fieldset class="col-md-6">
+      <label>Number of Calories:</label>
+      <input type="text" class="form-control calories" ng-model="meal.calories">
+    </fieldset>
+
+    <fieldset class="col-md-6">
+      <label>Text</label>
+      <textarea class="form-control" ng-model="meal.description"></textarea>
+    </fieldset>
+
+    <fieldset class="buttons col-xs-12 text-right">
+      <a class="btn" ng-click="cancel()">Cancel</a>
+      <a class="btn" ng-click="submit()">Save</a>
+    </fieldset>
+  </form>
+</div>

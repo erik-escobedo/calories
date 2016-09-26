@@ -1,0 +1,20 @@
+nav, .nav {
+  li {
+    padding: 0 5px;
+
+    a {
+      display: inline-block;
+      padding: 0;
+      line-height: 44px;
+
+      &.btn {
+        padding: 0 20px;
+        border-radius: 0;
+
+        &:hover {
+          background-color: $bg-alt-color;
+        }
+      }
+    }
+  }
+}

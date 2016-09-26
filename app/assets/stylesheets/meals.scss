@@ -1,0 +1,94 @@
+form.filter {
+  margin: 15px 0;
+  padding-top: 0;
+
+  fieldset {
+    line-height: 20px;
+
+    span.btn {
+      padding: 9px 12px;
+      box-shadow: none;
+      border-radius: 0 5px 5px 0;
+      cursor: default;
+    }
+  }
+}
+
+form.meals {
+  fieldset {
+    margin-top: 0;
+
+    margin-bottom: 15px;
+
+    input.calories {
+      height: auto;
+      font-family: monospace;
+      font-size: 75px;
+      text-align: center;
+      padding: 0;
+    }
+
+    textarea {
+      height: 109px;
+    }
+  }
+
+  margin-bottom: 15px;
+}
+
+div.meals {
+  margin-bottom: 15px;
+}
+
+section.meal {
+  margin-top: 15px;
+  padding: 15px;
+  height: 112px;
+  transition: box-shadow 0.15s linear;
+
+  &.selected, &:hover {
+    box-shadow: 0 0 7px 5px $bg-alt-color;
+
+    ul.buttons {
+      visibility: visible;
+    }
+  }
+
+  .data {
+    display: inline-block;
+    width: 65%;
+    vertical-align: top;
+  }
+
+  .date {
+    font-size: 14px;
+    font-weight: bold;
+  }
+
+  .description {
+    color: #888;
+  }
+
+  .calories {
+    display: inline-block;
+    width: 30%;
+    float: right;
+    text-align: right;
+    font-size: 40px;
+  }
+
+  &.grouped {
+    .date {
+      float: left;
+      font-size: 28px;
+    }
+
+    .calories {
+      color: $bg-alt-color;
+
+      &.exceeded {
+        color: mix(red, $bg-color, 75%);
+      }
+    }
+  }
+}
